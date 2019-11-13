@@ -23,7 +23,7 @@ class App extends Component {
           <h2>Here's a timer for this Google Books Search app.</h2>
         </div>
         <p className="App-intro">
-          This is the timer value: {this.state.timestamp}.
+          This is Ryan's timer value: {this.state.timestamp}.
         </p>
       </div>
     );
