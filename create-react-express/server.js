@@ -1,13 +1,17 @@
-const express = require("express");
-const path = require("path");
-const io = require('socket.io')();
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require("./routes");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3030;
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googlebooks';
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 io.on('connection', (client) => {
   client.on('subscribeToTimer', (interval) => {
@@ -22,13 +26,11 @@ const port = 8000;
 io.listen(port);
 console.log('listening on port ', port);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
