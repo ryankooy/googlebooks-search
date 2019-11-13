@@ -1,15 +1,16 @@
 import React from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 function Search() {
   return (
     <div>
-      <Button animated>
-        <Button.Content visible>Next</Button.Content>
-        <Button.Content hidden>
-          <Icon name='arrow right' />
-        </Button.Content>
-      </Button>
+      <Button.Group>
+        <Button>Een</Button>
+        <Button.Or />
+        <Button>Twee</Button>
+        <Button.Or />
+        <Button>Drie</Button>
+      </Button.Group>
     </div>
   );
 }
