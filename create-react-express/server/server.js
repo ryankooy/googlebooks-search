@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require("./routes");
+const routes = require('./routes');
+const io = require('./server/node_modules/socket-io');
 
 const PORT = process.env.PORT || 3030;
 

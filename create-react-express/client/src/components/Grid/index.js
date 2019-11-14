@@ -2,10 +2,20 @@ import React from 'react';
 import {  } from 'semantic-ui-react';
 import './style.css';
 
-function Grid() {
-  return (
-
-  );
+export function Container(props) {
+  return <div className=''>{props.children}</div>;
 }
 
-export default Grid;
+export function Row(props) {
+  return <div className=''>{props.children}</div>;
+}
+
+export function Col(props) {
+  return (
+    <div
+      className=''
+    >
+      {props.children}
+    </div>
+  );
+}

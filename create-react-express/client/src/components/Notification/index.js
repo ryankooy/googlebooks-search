@@ -4,7 +4,7 @@ import './style.css';
 
 function Notification() {
   return (
-
+    <div></div>
   );
 };
 

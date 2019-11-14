@@ -1,0 +1,33 @@
+.overflow {
+  max-height: 545px;
+  border: 1px #DDDDDD solid;
+  border-radius: 4px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.overflow ul {
+  margin: 0;
+}
+
+.overflow li {
+  border-radius: 0px;
+  border-left: none;
+  border-right: none;
+}
+
+.overflow li * {
+  cursor: pointer;
+}
+
+.overflow li a {
+  color: #2A878C;
+}
+
+.overflow li:first-child {
+  border-top: none;
+}
+
+.overflow li:last-child {
+  border-bottom: none;
+}

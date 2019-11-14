@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
+import Header from "../components/Header";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, FormButton } from "../components/Form";
 
 class Saved extends Component {
   state = {
@@ -54,9 +54,9 @@ class Saved extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+            <Header>
               <h1>What Books Should I Read?</h1>
-            </Jumbotron>
+            </Header>
             <form>
               <Input
                 value={this.state.title}
@@ -76,18 +76,18 @@ class Saved extends Component {
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
               />
-              <FormBtn
+              <FormButton
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Book
-              </FormBtn>
+              </FormButton>
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
+            <Header>
               <h1>Books On My List</h1>
-            </Jumbotron>
+            </Header>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (

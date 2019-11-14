@@ -2,18 +2,26 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import './style.css';
 
-function Form() {
+export function Input(props) {
   return (
-    <div>
-      <Button.Group>
-        <Button>Een</Button>
-        <Button.Or />
-        <Button>Twee</Button>
-        <Button.Or />
-        <Button>Drie</Button>
-      </Button.Group>
+    <div className=''>
+      <input className='' {...props} />
     </div>
   );
 }
 
-export default Form;
+export function TextArea(props) {
+  return (
+    <div className=''>
+      <textarea className='' {...props} />
+    </div>
+  );
+}
+
+export function FormButton(props) {
+  return (
+    <Button {...props} style={{ float: 'right', marginBottom: 10 }} className=''>
+      {props.children}
+    </Button>
+  );
+}

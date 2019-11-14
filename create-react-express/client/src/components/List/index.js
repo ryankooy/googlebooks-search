@@ -4,12 +4,12 @@ import './style.css';
 
 export function List({ children }) {
   return (
-    <div className="">
-      <ul className="">{children}</ul>
+    <div className='overflow'>
+      <ul className='group'>{children}</ul>
     </div>
   );
 }
 
 export function ListItem({ children }) {
-  return <li className="">{children}</li>;
+  return <li className='item'>{children}</li>;
 }
