@@ -10,6 +10,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+app.use(routes);
+
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googlebooks';
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
@@ -26,12 +32,6 @@ io.on('connection', (client) => {
 const port = 8000;
 io.listen(port);
 console.log('listening on port ', port);
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
-app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

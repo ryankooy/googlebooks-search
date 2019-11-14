@@ -5,11 +5,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import { subscribeToTimer } from '../api';
 import { Input, TextArea, FormButton } from "../components/Form";
-import logo from "./logo.svg";
-import { subscribeToTimer } from './api';
-import "./App.css";
-import Form from './components/Form';
 
 class Search extends Component {
   constructor(props) {
@@ -28,11 +25,11 @@ class Search extends Component {
   };
 
   componentDidMount() {
-    this.loadSearch();
+    API.loadPage();
   }
 
   loadSearch = () => {
-    API.getSearch()
+    API.getBooks()
       .then(res =>
         this.setState({ Search: res.data, title: "", authors: "", description: "" })
       )
@@ -72,9 +69,7 @@ class Search extends Component {
           <Col size="md-6">
             <Header>
               <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
                 <h2>Here's a timer for this Google Search Form app.</h2>
-                <Form />
               </div>
               <p className="App-intro">
                 This is Ryan's timer value: {this.state.timestamp}.

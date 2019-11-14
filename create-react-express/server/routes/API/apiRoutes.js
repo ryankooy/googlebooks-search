@@ -1,12 +1,17 @@
 const router = require('express').Router();
+const controller = require('../../controllers/controller')(db);
 
-module.exports = db => {
-  const controller = require('../../controllers/controller')(db);
+router
+  .route('/')
+  .get(controller.getBooks)
+  .post(controller.saveBooks);
 
-  router.get('/api/books', controller.getBooks);
-  router.post('/api/books', controller.saveBooks);
-  router.delete('/api/books/:id', controller.deleteBook);
-  router.get('*', controller.loadPage);
+router
+  .route('/:id')
+  .delete(controller.deleteBook);
 
-  return router;
-};
+router
+  .route('*')
+  .get(controller.loadPage);
+
+module.exports = router;
