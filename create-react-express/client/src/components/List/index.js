@@ -1,12 +1,15 @@
 import React from 'react';
+import {  } from 'semantic-ui-react';
 import './style.css';
 
-function List() {
+export function List({ children }) {
   return (
-    <div>
-      <Book />
+    <div className="">
+      <ul className="">{children}</ul>
     </div>
   );
-};
+}
 
-export default List;
+export function ListItem({ children }) {
+  return <li className="">{children}</li>;
+}

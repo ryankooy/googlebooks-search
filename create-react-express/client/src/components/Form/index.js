@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import './style.css';
 
-function Search() {
+function Form() {
   return (
     <div>
       <Button.Group>
@@ -16,4 +16,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Form;
