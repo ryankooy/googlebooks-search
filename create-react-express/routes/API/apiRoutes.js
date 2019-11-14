@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 module.exports = db => {
-  const controller = require('../controllers/controller')(db);
+  const controller = require('../../controllers/controller')(db);
 
   router.get('/api/books', controller.getBooks);
   router.post('/api/books', controller.saveBooks);

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
+import DeleteButton from "../components/DeleteButton";
+import Header from "../components/Header";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, FormButton } from "../components/Form";
 import logo from "./logo.svg";
 import { subscribeToTimer } from './api';
 import "./App.css";
-import Search from './components/Search';
+import Form from './components/Form';
 
-class Books extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     subscribeToTimer((err, timestamp) => this.setState({ 
@@ -20,28 +20,28 @@ class Books extends Component {
   }
 
   state = {
-    books: [],
+    Search: [],
     title: "",
-    author: "",
-    synopsis: "",
+    authors: "",
+    description: "",
     timestamp: 'no timestamp yet'
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadSearch();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadSearch = () => {
+    API.getSearch()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ Search: res.data, title: "", authors: "", description: "" })
       )
       .catch(err => console.log(err));
   };
 
   deleteBook = id => {
     API.deleteBook(id)
-      .then(res => this.loadBooks())
+      .then(res => this.loadSearch())
       .catch(err => console.log(err));
   };
 
@@ -54,13 +54,13 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.title && this.state.authors) {
       API.saveBook({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        authors: this.state.authors,
+        description: this.state.description
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadSearch())
         .catch(err => console.log(err));
     }
   };
@@ -70,16 +70,16 @@ class Books extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+            <Header>
               <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <h2>Here's a timer for this Google Books Search app.</h2>
-                <Search />
+                <h2>Here's a timer for this Google Search Form app.</h2>
+                <Form />
               </div>
               <p className="App-intro">
                 This is Ryan's timer value: {this.state.timestamp}.
               </p>
-            </Jumbotron>
+            </Header>
             <form>
               <Input
                 value={this.state.title}
@@ -88,39 +88,39 @@ class Books extends Component {
                 placeholder="Title (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.authors}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="authors"
+                placeholder="authors (required)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.description}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="description"
+                placeholder="description (Optional)"
               />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+              <FormButton
+                disabled={!(this.state.authors && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Book
-              </FormBtn>
+              </FormButton>
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {this.state.books.length ? (
+            <Header>
+              <h1>Search On My List</h1>
+            </Header>
+            {this.state.Search.length ? (
               <List>
-                {this.state.books.map(book => (
+                {this.state.Search.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                    <Link to={"/Search/" + book._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {book.title} by {book.authors}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteButton onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -134,4 +134,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Search;
