@@ -6,7 +6,7 @@ const API_KEY = '&key=AIzaSyDVVX3tdMWGnNqZvaCrT2radkym14pRaFI';
 
 module.exports = {
   getBooks: function(query) {
-    axios.get(`BASE_URL${query}API_KEY`);
+    axios.get(BASE_URL + query + API_KEY);
   },
   saveBooks: function(req, res) {
     db.Book

@@ -52,7 +52,7 @@ class Search extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.authors) {
-      API.saveBook({
+      API.saveBooks({
         title: this.state.title,
         authors: this.state.authors,
         description: this.state.description
@@ -71,7 +71,7 @@ class Search extends Component {
           </Row>
           <Row>
             <h3>Search Books</h3>
-            <form>s
+            <form>
               <SearchInput
                 value={this.state.title}
                 onChange={this.handleInputChange}
