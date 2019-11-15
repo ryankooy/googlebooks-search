@@ -1,10 +1,6 @@
 import React from 'react';
-import { Card, Grid, Container } from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 import './style.css';
-
-export function Wrapper(props) {
-  return <Container fluid>{props.children}</Container>;
-}
 
 export function Row(props) {
   return (

@@ -1,23 +1,24 @@
-import React from "react";
-import { Col, Row, Wrapper } from "../components/Grid";
-import Header from "../components/Header";
+import React from 'react';
+import { Col, Row } from '../components/Grid';
+import Heading from '../components/Header';
+import { Container } from 'semantic-ui-react';
 
 function Matchless() {
   return (
-    <Wrapper fluid>
+    <Container fluid>
       <Row>
         <Col>
-          <Header>
+          <Heading>
             <h1>404 Page Not Found</h1>
             <h1>
-              <span role="img" aria-label="Face With Rolling Eyes Emoji">
+              <span role='img' aria-label='Face With Rolling Eyes Emoji'>
                 🙄
               </span>
             </h1>
-          </Header>
+          </Heading>
         </Col>
       </Row>
-    </Wrapper>
+    </Container>
   );
 }
 

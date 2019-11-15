@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
-import { Col, Row, Wrapper } from '../components/Grid';
-import { List, ListItem } from '../components/List';
+import { Col, Row } from '../components/Grid';
+// import { BookList} from '../components/List';
 // import { subscribeToTimer } from '../api';
 import { SearchInput, FormButton } from '../components/Form';
+import { Header, Button, List, Container } from 'semantic-ui-react';
 
 class Search extends Component {
   // constructor(props) {
@@ -17,8 +18,7 @@ class Search extends Component {
 
   state = {
     books: [],
-    title: '',
-    authors: ''
+    search: ''
     // timestamp: 'no timestamp yet'
   };
 
@@ -34,19 +34,6 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
-  loadSearch = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({
-          books: res.data,
-          title: '',
-          authors: ''
-        })
-      )
-      .then(res => res.loadBooks())
-      .catch(err => console.log(err));
-  };
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -57,10 +44,9 @@ class Search extends Component {
   handleSave = event => {
     event.preventDefault();
 
-    if (this.state.title && this.state.authors) {
+    if (this.state.search) {
       API.saveBooks({
-        title: this.state.title,
-        authors: this.state.authors
+        search: this.state.search
       })
         .then(res => res.json())
         .catch(err => console.log(err));
@@ -69,16 +55,21 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getBooks(this.state.title)
-      .then(res => this.setState({
-        books: res.data
-      }))
+
+    API.getBooks(this.state.search)
+      .then(res => {
+        this.setState({
+          books: res.data
+        });
+
+        console.log(this.state.books);
+      })
       .catch(err => console.log(err));
   };
 
   render() {
     return (
-      <Wrapper fluid>
+      <Container fluid>
         <Col>
           <Row>
             <Heading />
@@ -87,49 +78,55 @@ class Search extends Component {
             <h3>Search Books</h3>
             <form>
               <SearchInput
-                value={this.state.title}
+                value={this.state.search}
                 onChange={this.handleInputChange}
-                name='title'
-                placeholder='Title'
+                name='search'
+                placeholder='Title or Author(s) . . .'
               />
-              <SearchInput
+              {/* <SearchInput
                 value={this.state.authors}
                 onChange={this.handleInputChange}
                 name='authors'
                 placeholder='Author(s)'
-              />
+              /> */}
               <FormButton
-                disabled={!(this.state.authors && this.state.title)}
-                onClick={this.loadSearch}
+                disabled={!this.state.search}
+                onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Search
               </FormButton>
             </form>
           </Row>
           <Row>
             <h3>Results</h3>
-              {this.state.books.length ? (
-                <List>
-                  {this.state.Search.map(book => (
-                    <ListItem key={book._id}>
-                      <Link to={'/api/books/' + book._id}>
+            {this.state.books.length ? (
+              <List divided verticalAlign='middle'>
+                {this.state.books.map(book => (
+                  <List.Item key={book._id}>
+                    <List.Content floated='right'>
+                      <Button>View</Button>
+                      <Button onClick={this.handleSave}>Save</Button>
+                      {/* <DeleteButton onClick={() => this.deleteBook(book._id)} /> */}
+                    </List.Content>
+                    {/* <Image /> */}
+                    <List.Content>
+                      <Link to={'/api/book/' + book._id}>
                         <strong>
                           {book.title} by {book.authors}
                         </strong>
                       </Link>
-                      <FormButton onClick={this.handleSave}>
-                        Save Book
-                      </FormButton>
-                      {/* <DeleteButton onClick={() => this.deleteBook(book._id)} /> */}
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
+                    </List.Content>
+                  </List.Item>
+                ))}
+              </List>
+            ) : (
+              <Header as='h3' textAlign='center'>
+                No Results to Display
+              </Header>
+            )}
           </Row>
         </Col>
-      </Wrapper>
+      </Container>
     );
   }
 }

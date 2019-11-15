@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
   getBooks: function(query) {
-    return axios.get("/api/search", { params: { q: query } });
+    return axios.get("/api/books", { params: { q: query } });
   },
   findBooks: function() {
     return axios.get('/api/books');

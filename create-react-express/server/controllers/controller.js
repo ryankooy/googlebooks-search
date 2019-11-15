@@ -3,8 +3,6 @@ const axios = require('axios');
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 // const API_KEY = '&key=AIzaSyDVVX3tdMWGnNqZvaCrT2radkym14pRaFI';
 
-// query.replace(' ', '+')
-
 module.exports = {
   getBooks: function(req, res) {
     axios.get(BASE_URL, { params: { q: req } })

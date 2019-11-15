@@ -3,8 +3,9 @@ import DeleteButton from '../components/DeleteButton';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
-import { Row, Wrapper } from '../components/Grid';
-import { List, ListItem } from '../components/List';
+import { Row } from '../components/Grid';
+import { BookList, ListItem } from '../components/List';
+import { Container } from 'semantic-ui-react';
 
 class Saved extends Component {
   state = {
@@ -30,14 +31,14 @@ class Saved extends Component {
 
   render() {
     return (
-      <Wrapper fluid>
+      <Container fluid>
         <Row>
           <Heading />
         </Row>
         <Row>
           <h3>Saved Books</h3>
           {this.state.books.length ? (
-            <List>
+            <BookList>
               {this.state.books.map(book => (
                 <ListItem key={book._id}>
                   <Link to={'/books/' + book._id}>
@@ -48,12 +49,12 @@ class Saved extends Component {
                   <DeleteButton onClick={() => this.deleteBook(book._id)} />
                 </ListItem>
               ))}
-            </List>
+            </BookList>
           ) : (
             <h3>No Results to Display</h3>
           )}
         </Row>
-      </Wrapper>
+      </Container>
     );
   }
 }
