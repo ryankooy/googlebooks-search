@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import DeleteButton from "../components/DeleteButton";
-import Header from "../components/Header";
-import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { subscribeToTimer } from '../api';
-import { Input, TextArea, FormButton } from "../components/Form";
+import React, { Component } from 'react';
+import DeleteButton from '../components/DeleteButton';
+import Header from '../components/Header';
+import API from '../utils/API';
+import { Link } from 'react-router-dom';
+import { Col, Row, Container } from '../components/Grid';
+import { List, ListItem } from '../components/List';
+// import { subscribeToTimer } from '../api';
+import { SearchInput, FormButton } from '../components/Form';
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
-    subscribeToTimer((err, timestamp) => this.setState({ 
-      timestamp 
-    }));
-  }
+  // constructor(props) {
+  //   super(props);
+  //   subscribeToTimer((err, timestamp) => this.setState({ 
+  //     timestamp 
+  //   }));
+  // }
 
   state = {
     Search: [],
-    title: "",
-    authors: "",
-    description: "",
-    timestamp: 'no timestamp yet'
+    title: '',
+    authors: '',
+    description: ''
+    // timestamp: 'no timestamp yet'
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Search extends Component {
   loadSearch = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ Search: res.data, title: "", authors: "", description: "" })
+        this.setState({ Search: res.data, title: '', authors: '', description: '' })
       )
       .catch(err => console.log(err));
   };
@@ -66,33 +66,20 @@ class Search extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
-            <Header>
-              <div className="App-header">
-                <h2>Here's a timer for this Google Search Form app.</h2>
-              </div>
-              <p className="App-intro">
-                This is Ryan's timer value: {this.state.timestamp}.
-              </p>
-            </Header>
+          <Col>
+            <Header />
             <form>
-              <Input
+              <SearchInput
                 value={this.state.title}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name='title'
+                placeholder='Title'
               />
-              <Input
+              <SearchInput
                 value={this.state.authors}
                 onChange={this.handleInputChange}
-                name="authors"
-                placeholder="authors (required)"
-              />
-              <TextArea
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                name="description"
-                placeholder="description (Optional)"
+                name='authors'
+                placeholder='Author(s)'
               />
               <FormButton
                 disabled={!(this.state.authors && this.state.title)}
@@ -102,7 +89,7 @@ class Search extends Component {
               </FormButton>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
+          <Col>
             <Header>
               <h1>Search On My List</h1>
             </Header>
@@ -110,7 +97,7 @@ class Search extends Component {
               <List>
                 {this.state.Search.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/Search/" + book._id}>
+                    <Link to={'/api/books/' + book._id}>
                       <strong>
                         {book.title} by {book.authors}
                       </strong>

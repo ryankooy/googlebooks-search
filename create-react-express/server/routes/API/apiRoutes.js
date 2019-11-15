@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../../controllers/controller')(db);
+const controller = require('../../controllers/controller');
 
 router
   .route('/')
@@ -9,9 +9,5 @@ router
 router
   .route('/:id')
   .delete(controller.deleteBook);
-
-router
-  .route('*')
-  .get(controller.loadPage);
 
 module.exports = router;
