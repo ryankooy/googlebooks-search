@@ -1,8 +1,9 @@
 import axios from 'axios';
+const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
 export default {
   getBooks: function(query) {
-    return axios.get("/api/books", { params: { q: query } });
+    return axios.get(BASE_URL, { params: { q: query } });
   },
   findBooks: function() {
     return axios.get('/api/books');

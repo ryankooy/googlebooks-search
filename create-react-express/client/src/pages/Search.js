@@ -18,7 +18,12 @@ class Search extends Component {
 
   state = {
     books: [],
-    search: ''
+    search: '',
+    title: '',
+    authors: '',
+    description: '',
+    image: '',
+    link: ''
     // timestamp: 'no timestamp yet'
   };
 
@@ -28,9 +33,7 @@ class Search extends Component {
 
   loadBooks = () => {
     API.findBooks()
-      .then(res =>
-        this.setState({ books: res.data })
-      )
+      .then(res => this.setState({ books: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -58,11 +61,36 @@ class Search extends Component {
 
     API.getBooks(this.state.search)
       .then(res => {
+        let book = this.state.books.items[0].volumeInfo;
+
+        let bookInfo = {
+          title: book.title,
+          authors: book.authors,
+          description: book.description,
+          image: book.imageLinks.thumbnail,
+          link: book.infoLink
+        }
+
         this.setState({
-          books: res.data
+          books: res.data,
+
         });
 
-        console.log(this.state.books);
+        let title = book.title;
+        let authors = book.authors;
+        let description = book.description;
+        let image = book.imageLinks.thumbnail;
+        let link = book.infoLink;
+
+        console.log(book);
+        console.log(bookInfo);
+        console.log(`
+          Title: ${title}
+          Author(s): ${authors}
+          Description: ${description}
+          Image: ${image}
+          Link: ${link}
+        `);
       })
       .catch(err => console.log(err));
   };
