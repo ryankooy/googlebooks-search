@@ -1,21 +1,25 @@
 import React from 'react';
-import {  } from 'semantic-ui-react';
+import { Card, Grid, Container } from 'semantic-ui-react';
 import './style.css';
 
-export function Container(props) {
-  return <div className=''>{props.children}</div>;
+export function Wrapper(props) {
+  return <Container fluid>{props.children}</Container>;
 }
 
 export function Row(props) {
-  return <div className=''>{props.children}</div>;
+  return (
+    <Card.Group>
+      <Card fluid>
+        {props.children}
+      </Card>
+    </Card.Group>
+  );
 }
 
 export function Col(props) {
   return (
-    <div
-      className=''
-    >
+    <Grid.Column centered>
       {props.children}
-    </div>
+    </Grid.Column>
   );
 }

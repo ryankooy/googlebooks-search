@@ -1,10 +1,10 @@
 import React from "react";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row, Wrapper } from "../components/Grid";
 import Header from "../components/Header";
 
 function Matchless() {
   return (
-    <Container fluid>
+    <Wrapper fluid>
       <Row>
         <Col>
           <Header>
@@ -17,7 +17,7 @@ function Matchless() {
           </Header>
         </Col>
       </Row>
-    </Container>
+    </Wrapper>
   );
 }
 

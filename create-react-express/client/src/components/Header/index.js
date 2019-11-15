@@ -1,16 +1,16 @@
 import React from 'react';
-import {  } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import './style.css';
 
-function Header(props) {
+function Heading() {
   return (
-    <div
-    style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-    className=''
-    >
-      {props.children}
-    </div>
+    <Header
+      textAlign='centered'
+      as='h1'
+      content='Google Books Search'
+      subheader='with React'
+    />
   );
 }
 
-export default Header;
+export default Heading;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import DeleteButton from '../components/DeleteButton';
-import Header from '../components/Header';
+import Heading from '../components/Header';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
-import { Col, Row, Container } from '../components/Grid';
+import { Col, Row, Wrapper } from '../components/Grid';
 import { List, ListItem } from '../components/List';
 // import { subscribeToTimer } from '../api';
 import { SearchInput, FormButton } from '../components/Form';
@@ -64,11 +64,14 @@ class Search extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col>
-            <Header />
-            <form>
+      <Wrapper fluid>
+        <Col>
+          <Row>
+            <Heading />
+          </Row>
+          <Row>
+            <h3>Search Books</h3>
+            <form>s
               <SearchInput
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -88,30 +91,28 @@ class Search extends Component {
                 Submit Book
               </FormButton>
             </form>
-          </Col>
-          <Col>
-            <Header>
-              <h1>Search On My List</h1>
-            </Header>
-            {this.state.Search.length ? (
-              <List>
-                {this.state.Search.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={'/api/books/' + book._id}>
-                      <strong>
-                        {book.title} by {book.authors}
-                      </strong>
-                    </Link>
-                    <DeleteButton onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
+          </Row>
+          <Row>
+            <h3>Results</h3>
+              {this.state.Search.length ? (
+                <List>
+                  {this.state.Search.map(book => (
+                    <ListItem key={book._id}>
+                      <Link to={'/api/books/' + book._id}>
+                        <strong>
+                          {book.title} by {book.authors}
+                        </strong>
+                      </Link>
+                      <DeleteButton onClick={() => this.deleteBook(book._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+          </Row>
+        </Col>
+      </Wrapper>
     );
   }
 }

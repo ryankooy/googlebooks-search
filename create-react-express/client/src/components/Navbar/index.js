@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Header } from 'semantic-ui-react';
-// import Search from '../../pages/Search';
-// import Saved from '../../pages/Saved';
 import '../../App.js';
 import './style.css';
 
