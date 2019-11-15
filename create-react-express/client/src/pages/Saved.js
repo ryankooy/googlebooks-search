@@ -3,7 +3,7 @@ import DeleteButton from '../components/DeleteButton';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
-import { Col, Row, Wrapper } from '../components/Grid';
+import { Row, Wrapper } from '../components/Grid';
 import { List, ListItem } from '../components/List';
 
 class Saved extends Component {
@@ -15,7 +15,7 @@ class Saved extends Component {
   };
 
   loadBooks = () => {
-    API.getBooks()
+    API.findBooks()
       .then(res =>
         this.setState({ books: res.data, title: '', author: '', synopsis: '' })
       )

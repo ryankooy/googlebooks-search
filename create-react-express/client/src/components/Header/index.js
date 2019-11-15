@@ -5,7 +5,7 @@ import './style.css';
 function Heading() {
   return (
     <Header
-      textAlign='centered'
+      textAlign='center'
       as='h1'
       content='Google Books Search'
       subheader='with React'

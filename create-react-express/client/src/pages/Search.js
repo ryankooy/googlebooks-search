@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DeleteButton from '../components/DeleteButton';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
@@ -17,28 +16,34 @@ class Search extends Component {
   // }
 
   state = {
-    Search: [],
+    books: [],
     title: '',
-    authors: '',
-    description: ''
+    authors: ''
     // timestamp: 'no timestamp yet'
   };
 
-  componentDidMount() {
-    API.loadPage();
-  }
+  // componentDidMount() {
+  //   this.loadSearch();
+  // }
 
-  loadSearch = () => {
-    API.getBooks()
+  loadBooks = () => {
+    API.findBooks()
       .then(res =>
-        this.setState({ Search: res.data, title: '', authors: '', description: '' })
+        this.setState({ books: res.data })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadSearch())
+  loadSearch = () => {
+    API.getBooks()
+      .then(res =>
+        this.setState({
+          books: res.data,
+          title: '',
+          authors: ''
+        })
+      )
+      .then(res => res.loadBooks())
       .catch(err => console.log(err));
   };
 
@@ -49,17 +54,26 @@ class Search extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleSave = event => {
     event.preventDefault();
+
     if (this.state.title && this.state.authors) {
       API.saveBooks({
         title: this.state.title,
-        authors: this.state.authors,
-        description: this.state.description
+        authors: this.state.authors
       })
-        .then(res => this.loadSearch())
+        .then(res => res.json())
         .catch(err => console.log(err));
     }
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    API.getBooks(this.state.title)
+      .then(res => this.setState({
+        books: res.data
+      }))
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -86,7 +100,7 @@ class Search extends Component {
               />
               <FormButton
                 disabled={!(this.state.authors && this.state.title)}
-                onClick={this.handleFormSubmit}
+                onClick={this.loadSearch}
               >
                 Submit Book
               </FormButton>
@@ -94,7 +108,7 @@ class Search extends Component {
           </Row>
           <Row>
             <h3>Results</h3>
-              {this.state.Search.length ? (
+              {this.state.books.length ? (
                 <List>
                   {this.state.Search.map(book => (
                     <ListItem key={book._id}>
@@ -103,7 +117,10 @@ class Search extends Component {
                           {book.title} by {book.authors}
                         </strong>
                       </Link>
-                      <DeleteButton onClick={() => this.deleteBook(book._id)} />
+                      <FormButton onClick={this.handleSave}>
+                        Save Book
+                      </FormButton>
+                      {/* <DeleteButton onClick={() => this.deleteBook(book._id)} /> */}
                     </ListItem>
                   ))}
                 </List>
