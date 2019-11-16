@@ -4,7 +4,6 @@ const controller = require('../../controllers/controller');
 // to display and save books
 router
   .route('/')
-  .get(controller.getBooks)
   .get(controller.findBooks)
   .post(controller.saveBooks);
 

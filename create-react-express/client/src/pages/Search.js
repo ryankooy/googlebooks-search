@@ -4,8 +4,8 @@ import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
 // import { BookList} from '../components/List';
 // import { subscribeToTimer } from '../api';
-import { SearchInput, FormButton } from '../components/Form';
-import { Header, List, Container } from 'semantic-ui-react';
+import { SearchInput } from '../components/Form';
+import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
 
 class Search extends Component {
@@ -89,20 +89,21 @@ class Search extends Component {
           </Row>
           <Row>
             <h3>Search Books</h3>
-            <form>
               <SearchInput
                 value={this.state.search}
                 onChange={this.handleInputChange}
                 name='search'
                 placeholder='Title or Author(s) . . .'
+                fluid='true'
               />
-              <FormButton
+              <Button
+                circular='true'
+                color='olive'
                 disabled={!this.state.search}
                 onClick={this.handleFormSubmit}
               >
                 Search
-              </FormButton>
-            </form>
+              </Button>
           </Row>
           <Row>
             <h3>Results</h3>
