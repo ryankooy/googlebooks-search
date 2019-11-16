@@ -6,7 +6,7 @@ const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 module.exports = {
   getBooks: function(req, res) {
     axios.get(BASE_URL, { params: { q: req } })
-      .then(({data: { results } }) => res.json(results))
+      .then(({ data: { results } }) => res.json(results))
       .catch(err => res.status(422).json(err));
   },
   findBooks: function(req, res) {
