@@ -1,0 +1,8 @@
+{
+  "name": "googlebooks-search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ryankooy/googlebooks-search.git",
+  "author": "Ryan Kooy <rwkooy@gmail.com>",
+  "license": "MIT"
+}
