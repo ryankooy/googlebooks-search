@@ -1,7 +1,11 @@
+const mongoose = require('mongoose');
 const db = require('../models');
-const axios = require('axios');
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
-// const API_KEY = '&key=AIzaSyDVVX3tdMWGnNqZvaCrT2radkym14pRaFI';
+const axios = require('axios');
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/googlebooks'
+);
 
 module.exports = {
   getBooks: function(req, res) {

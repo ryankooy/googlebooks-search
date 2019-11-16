@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button, List, Message, Image } from 'semantic-ui-react';
 // import Thumbnail from '../Thumbnail';
 import './style.css';
@@ -22,20 +21,12 @@ export function ListItem({
   link
 }) {
   return (
-    <List.Item>
       <List.Content floated='right'>
         <Button to={link}>View</Button>
-        <Button onClick={this.handleSave}>Save</Button>
-      </List.Content>
+        {/* <Button onClick={this.handleSave}>Save</Button> */}
       <Image src={image} />
-      <List.Content>
-        <Link to={link}>
-          <strong>
-            {title} by {authors}
-          </strong>
-        </Link>
+        <Message content={`${title} by ${authors}`} />
         <Message content={description} />
       </List.Content>
-    </List.Item>
   );
 }
