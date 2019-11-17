@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
-// import { BookList} from '../components/List';
 // import { subscribeToTimer } from '../api';
 import { SearchInput } from '../components/Form';
 import { Header, List, Container, Button } from 'semantic-ui-react';
@@ -18,35 +17,28 @@ class Search extends Component {
 
   state = {
     books: [],
-    search: ''
+    search: '',
+    title: '',
+    authors: '',
+    description: '',
+    image: '',
+    link: ''
     // timestamp: 'no timestamp yet'
   };
 
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  // loadBooks = () => {
-  //   API.findBooks()
-  //     .then(res => this.setState({ books: res.data }))
-  //     .catch(err => console.log(err));
-  // };
+  loadBooks = () => {
+    API.findBooks()
+      .then(res =>
+        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: ''  })
+      )
+      .catch(err => console.log(err));
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-  };
-
-  handleSave = event => {
-    event.preventDefault();
-
-    if (this.state.search) {
-      API.saveBooks({ search: this.state.search })
-        .then(res => res.json())
-        .catch(err => console.log(err));
-    }
   };
 
   handleFormSubmit = event => {
@@ -64,11 +56,11 @@ class Search extends Component {
         console.log(booksInfo);
 
         this.setState({
-          books: booksInfo
+          books: booksInfo,
         });
-
+        
+        // test
         const aBook = res.data.items[0].volumeInfo;
-
         console.log(`
           Title: ${aBook.title}
           Author(s): ${aBook.authors}
@@ -94,10 +86,10 @@ class Search extends Component {
                 onChange={this.handleInputChange}
                 name='search'
                 placeholder='Title or Author(s) . . .'
-                fluid='true'
+                fluid={true}
               />
               <Button
-                circular='true'
+                circular={true}
                 color='olive'
                 disabled={!this.state.search}
                 onClick={this.handleFormSubmit}

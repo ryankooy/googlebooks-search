@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import DeleteButton from '../components/DeleteButton';
 import Heading from '../components/Header';
 import API from '../utils/API';
-import { Link } from 'react-router-dom';
-import { Row } from '../components/Grid';
-import { BookList, ListItem } from '../components/List';
-import { Container } from 'semantic-ui-react';
+import { Col, Row } from '../components/Grid';
+// import { subscribeToTimer } from '../api';
+import { Header, List, Container} from 'semantic-ui-react';
+import { ListItem } from '../components/List';
 
 class Saved extends Component {
   state = {
     books: [],
+    search: '',
     title: '',
-    author: '',
-    synopsis: ''
+    authors: '',
+    description: '',
+    image: '',
+    link: ''
+    // timestamp: 'no timestamp yet'
   };
+
+  // componentDidMount() {
+  //   this.loadBooks();
+  // }
 
   loadBooks = () => {
     API.findBooks()
       .then(res =>
-        this.setState({ books: res.data, title: '', author: '', synopsis: '' })
+        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: ''  })
       )
       .catch(err => console.log(err));
   };
@@ -32,28 +39,32 @@ class Saved extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Heading />
-        </Row>
-        <Row>
-          <h3>Saved Books</h3>
-          {this.state.books.length ? (
-            <BookList>
-              {this.state.books.map(book => (
-                <ListItem key={book._id}>
-                  <Link to={'/books/' + book._id}>
-                    <strong>
-                      {book.title} by {book.author}
-                    </strong>
-                  </Link>
-                  <DeleteButton onClick={() => this.deleteBook(book._id)} />
-                </ListItem>
-              ))}
-            </BookList>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </Row>
+        <Col>
+          <Row>
+            <Heading />
+          </Row>
+          <Row>
+            <h3>Saved Books</h3>
+            {this.state.books.length ? (
+              <List divided verticalAlign='middle'>
+                {this.state.books.map((book, i) => (
+                  <ListItem
+                    key={i}
+                    title={book.volumeInfo.title}
+                    authors={book.volumeInfo.authors}
+                    description={book.volumeInfo.description}
+                    image={book.volumeInfo.imageLinks.thumbnail}
+                    link={book.volumeInfo.infoLink}
+                  />
+                ))}
+              </List>
+            ) : (
+              <Header as='h3' textAlign='center'>
+                No Results to Display
+              </Header>
+            )}
+          </Row>
+        </Col>
       </Container>
     );
   }

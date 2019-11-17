@@ -14,7 +14,7 @@ export function Row(props) {
 
 export function Col(props) {
   return (
-    <Grid.Column centered='true'>
+    <Grid.Column>
       {props.children}
     </Grid.Column>
   );

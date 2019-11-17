@@ -16,13 +16,15 @@ module.exports = {
   findBooks: function(req, res) {
     db.Book
       .find({})
-      .then(books => res.json(books))
+      .then(books => { res.json(books) })
       .catch(err => res.status(422).json(err));
   },
   saveBooks: function(req, res) {
     db.Book
       .create(req.body)
-      .then(books => res.json(books))
+      .then(books => {
+        db.Book.insert
+      })
       .catch(err => res.status(422).json(err));
   },
   deleteBook: function(req, res) {

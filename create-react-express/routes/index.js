@@ -1,8 +1,8 @@
 const path = require('path');
 const router = require('express').Router();
-const routes = require('./API');
+const routes = require('./api');
 
-router.use('/API', routes);
+router.use('/api', routes);
 
 router.use(function(req, res) {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
