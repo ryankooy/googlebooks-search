@@ -22,9 +22,7 @@ module.exports = {
   saveBooks: function(req, res) {
     db.Book
       .create(req.body)
-      .then(books => {
-        db.Book.insert
-      })
+      .then(books => res.json(books))
       .catch(err => res.status(422).json(err));
   },
   deleteBook: function(req, res) {
