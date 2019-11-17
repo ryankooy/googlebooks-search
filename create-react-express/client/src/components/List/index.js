@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, List, Image, Segment, Grid, Header } from 'semantic-ui-react';
 // import Thumbnail from '../Thumbnail';
 import './style.css';
+import axios from 'axios';
 import API from '../../utils/API';
 
 export function BookList(props) {
@@ -15,14 +16,18 @@ export function BookList(props) {
 }
 
 function save(title, authors, description, image, link) {
-  API.saveBooks({
+  const book = {
     title: title,
     authors: authors,
     description: description,
     image: image,
     link: link
-  })
-    .then(book => console.log(book))
+  }
+  
+  API.saveBooks(book)
+    .then(dbBook => {
+      axios.post("/api/books", dbBook);
+    })
     .catch(err => console.log(err));
 }
 
