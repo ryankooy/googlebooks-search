@@ -18,9 +18,9 @@ class Saved extends Component {
     // timestamp: 'no timestamp yet'
   };
 
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
+  componentDidMount() {
+    this.loadBooks();
+  }
 
   loadBooks = () => {
     API.findBooks()
