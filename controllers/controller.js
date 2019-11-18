@@ -15,7 +15,7 @@ module.exports = {
   },
   findBooks: function(req, res) {
     db.Book
-      .find()
+      .find().sort({ _id: -1 })
       .then(books => res.json(books))
       .catch(err => res.status(422).json(err));
   },
