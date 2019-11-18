@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
-// import { subscribeToTimer } from '../api';
 import { Header, List, Container} from 'semantic-ui-react';
 import { ListItem } from '../components/List';
 
@@ -50,11 +49,11 @@ class Saved extends Component {
                 {this.state.books.map((book, i) => (
                   <ListItem
                     key={i}
-                    title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors}
-                    description={book.volumeInfo.description}
-                    image={book.volumeInfo.imageLinks.thumbnail}
-                    link={book.volumeInfo.infoLink}
+                    title={book.title}
+                    authors={book.authors}
+                    description={book.description}
+                    image={book.image}
+                    link={book.link}
                   />
                 ))}
               </List>

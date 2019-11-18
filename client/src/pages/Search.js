@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
-// import { subscribeToTimer } from '../api';
 import { SearchInput } from '../components/Form';
 import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
