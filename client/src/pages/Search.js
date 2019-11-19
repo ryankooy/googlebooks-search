@@ -119,7 +119,7 @@ class Search extends Component {
                   >
                     <Button.Group>
                       <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
-                      <Button onClick={() => save(title, authors, description, image, link)} color='green'>Save</Button>
+                      <Button onClick={() => save(book.volumeInfo.title, book.volumeInfo.authors, book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)} color='green'>Save</Button>
                     </Button.Group>
                   </ListItem>
                 ))}
