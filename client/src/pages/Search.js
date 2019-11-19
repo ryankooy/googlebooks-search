@@ -5,15 +5,9 @@ import { Col, Row } from '../components/Grid';
 import { SearchInput } from '../components/Form';
 import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
+import { SaveButton } from '../components/SaveButton';
 
 class Search extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   subscribeToTimer((err, timestamp) => this.setState({ 
-  //     timestamp 
-  //   }));
-  // }
-
   state = {
     books: [],
     search: '',
@@ -22,7 +16,6 @@ class Search extends Component {
     description: '',
     image: '',
     link: ''
-    // timestamp: 'no timestamp yet'
   };
 
   loadBooks = () => {
@@ -108,7 +101,10 @@ class Search extends Component {
                     description={book.volumeInfo.description}
                     image={book.volumeInfo.imageLinks.thumbnail}
                     link={book.volumeInfo.infoLink}
-                  />
+                  >
+                    <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
+                    <SaveButton />
+                  </ListItem>
                 ))}
               </List>
             ) : (
