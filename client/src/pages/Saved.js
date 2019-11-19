@@ -4,7 +4,6 @@ import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
 import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
-import { DeleteButton } from '../components/DeleteButton';
 
 class Saved extends Component {
   state = {
