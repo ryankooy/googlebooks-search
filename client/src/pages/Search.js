@@ -5,7 +5,6 @@ import { Col, Row } from '../components/Grid';
 import { SearchInput } from '../components/Form';
 import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
-import { SaveButton } from '../components/SaveButton';
 
 class Search extends Component {
   state = {
@@ -64,6 +63,22 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
+  save = (title, authors, description, image, link) => {
+    const book = {
+      title: title,
+      authors: authors,
+      description: description,
+      image: image,
+      link: link
+    }
+    
+    API.saveBooks(book)
+      .then(dbBook => {
+        console.log(dbBook);
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <Container fluid>
@@ -102,8 +117,10 @@ class Search extends Component {
                     image={book.volumeInfo.imageLinks.thumbnail}
                     link={book.volumeInfo.infoLink}
                   >
-                    <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
-                    <SaveButton />
+                    <Button.Group>
+                      <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
+                      <Button onClick={() => save(title, authors, description, image, link)} color='green'>Save</Button>
+                    </Button.Group>
                   </ListItem>
                 ))}
               </List>

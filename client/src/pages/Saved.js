@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
-import { Header, List, Container } from 'semantic-ui-react';
+import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
 import { DeleteButton } from '../components/DeleteButton';
 
@@ -31,8 +31,14 @@ class Saved extends Component {
   };
 
   deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+    const thisBook = { _id: id};
+    
+    API.deleteBook(thisBook)
+      .then(book => {
+        console.log(`Book ${thisBook} was deleted.`);
+        
+        this.loadBooks();
+      })
       .catch(err => console.log(err));
   };
 
@@ -56,8 +62,10 @@ class Saved extends Component {
                     image={book.image}
                     link={book.link}
                   >
-                    <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
-                    <DeleteButton />
+                    <Button.Group>
+                      <Button href={book.link} circular={true} color='olive'>View</Button>
+                      <Button onClick={() => deleteBook(this._id)} color='red'>✗</Button>
+                    </Button.Group>
                   </ListItem>
                 ))}
               </List>
