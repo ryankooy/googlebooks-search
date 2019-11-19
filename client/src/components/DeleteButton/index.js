@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, List, Container} from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import API from '../utils/API';
 import './style.css';
 
@@ -7,7 +7,7 @@ function delete(id) {
   const thisBook = { _id: id};
   
   API.deleteBook(thisBook)
-    .then(res => this.loadBooks())
+    .then(book => console.log(`Book ${thisBook} was deleted.`))
     .catch(err => console.log(err));
 }
 
