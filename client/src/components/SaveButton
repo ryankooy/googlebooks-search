@@ -1,7 +1,6 @@
   
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import './style.css';
 import API from '../../utils/API';
 
 function save(title, authors, description, image, link) {
