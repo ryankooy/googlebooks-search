@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
-import { Header, List, Container} from 'semantic-ui-react';
+import { Header, List, Container } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
+import { DeleteButton } from '../components/DeleteButton';
 
 class Saved extends Component {
   state = {
@@ -54,7 +55,10 @@ class Saved extends Component {
                     description={book.description}
                     image={book.image}
                     link={book.link}
-                  />
+                  >
+                    <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
+                    <DeleteButton />
+                  </ListItem>
                 ))}
               </List>
             ) : (
