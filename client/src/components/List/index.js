@@ -2,10 +2,15 @@ import React from 'react';
 import { List, Image, Segment, Grid, Header } from 'semantic-ui-react';
 import './style.css';
 
+const styles = {
+  fontFamily: "'Baskervville', serif",
+  backgroundColor: "lightgray"
+}
+
 export function BookList(props) {
   return (
     <div className='overflow'>
-      <List divided verticalAlign='middle'>
+      <List divided style={styles} verticalAlign='middle'>
         {props.children}
       </List>
     </div>
@@ -20,7 +25,7 @@ export function ListItem({
   children
 }) {
   return (
-    <Segment raised placeholder>
+    <Segment style={styles} raised placeholder>
       <Grid columns={1}>
         <Grid.Column>
           <Segment>

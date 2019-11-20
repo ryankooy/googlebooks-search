@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Header } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import '../../App.js';
 import './style.css';
+
+const styles = {
+  fontFamily: "'Baskervville', serif",
+  backgroundColor: "lightslategray"
+}
+
+const linkText = {
+  color: "white",
+  fontSize: "17px"
+}
 
 class Navbar extends Component {
   state = { 
@@ -20,16 +30,14 @@ class Navbar extends Component {
 
     return (
       <nav>
-        <Menu pointing>
-          <Header as='h1' color='orange'>
-            Google Books
-          </Header>
+        <Menu style={styles} pointing>
           <Menu.Item
             as={ Link }
             to='/'
             name='search'
             active={activeItem === 'search'}
             onClick={this.handleItemClick}
+            style={linkText}
           />
           <Menu.Item
             as={ Link }
@@ -37,6 +45,7 @@ class Navbar extends Component {
             name='saved'
             active={activeItem === 'saved'}
             onClick={this.handleItemClick}
+            style={linkText}
           />
         </Menu>
       </nav>
