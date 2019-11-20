@@ -5,6 +5,7 @@ import { Col, Row } from '../components/Grid';
 import { SearchInput } from '../components/Form';
 import { Header, List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
+import './Search.css';
 
 class Search extends Component {
   state = {
@@ -20,7 +21,7 @@ class Search extends Component {
   loadBooks = () => {
     API.findBooks()
       .then(res =>
-        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: ''  })
+        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: '',  })
       )
       .catch(err => console.log(err));
   };
@@ -81,7 +82,7 @@ class Search extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container className='cont' fluid>
         <Col>
           <Row>
             <Heading />

@@ -4,7 +4,7 @@ import './style.css';
 
 const styles = {
   fontFamily: "'Baskervville', serif",
-  backgroundColor: "lightgray",
+  backgroundColor: "ghostwhite",
   boxShadow: "0px 0px 20px darkgray"
 }
 

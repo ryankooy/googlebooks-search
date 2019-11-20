@@ -29,7 +29,9 @@ export function ListItem({
       <Grid columns={1}>
         <Grid.Column>
           <Segment>
-            <Header as='h2' content={`${title}, by ${authors[0]}`} />
+            <div className='header'>
+              <Header as='h2' content={`${title}, by ${authors[0]}`} />
+            </div>
           </Segment>
           <Image src={image} style={{ maxWidth: '300px' }} centered={true} rounded />
         </Grid.Column>
