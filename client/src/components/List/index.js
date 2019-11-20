@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, List, Image, Segment, Grid, Header } from 'semantic-ui-react';
+import { List, Image, Segment, Grid, Header } from 'semantic-ui-react';
 import './style.css';
-import API from '../../utils/API';
 
 export function BookList(props) {
   return (
@@ -18,8 +17,8 @@ export function ListItem({
   title,
   authors,
   description,
-  link
-}, props) {
+  children
+}) {
   return (
     <Segment raised placeholder>
       <Grid columns={1}>
@@ -30,7 +29,11 @@ export function ListItem({
           <Image src={image} style={{ maxWidth: '300px' }} centered={true} rounded />
         </Grid.Column>
         <Grid.Column>
-          {props.children}
+          <Segment>
+            { children }
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
           <Segment>
             {description}
           </Segment>

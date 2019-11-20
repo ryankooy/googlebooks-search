@@ -117,7 +117,7 @@ class Search extends Component {
                     image={book.volumeInfo.imageLinks.thumbnail}
                     link={book.volumeInfo.infoLink}
                   >
-                    <Button.Group>
+                    <Button.Group attached='bottom'>
                       <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
                       <Button onClick={() => this.save(book.volumeInfo.title, book.volumeInfo.authors, book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)} color='green'>Save</Button>
                     </Button.Group>
