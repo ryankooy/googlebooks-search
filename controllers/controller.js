@@ -27,8 +27,9 @@ module.exports = {
   },
   deleteBook: function(req, res) {
     db.Book
-      .delete({ _id: req.params.id })
-      .then(book => res.json(book))
+      .findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
 };

@@ -24,13 +24,13 @@ class Saved extends Component {
   loadBooks = () => {
     API.findBooks()
       .then(res =>
-        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: ''  })
+        this.setState({ books: res.data, title: '', authors: '', description: '', image: '', link: '' })
       )
       .catch(err => console.log(err));
   };
 
   deleteBook = id => {
-    const thisBook = { _id: id};
+    const thisBook = { _id: id };
     
     API.deleteBook(thisBook)
       .then(book => {
