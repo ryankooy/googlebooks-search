@@ -21,7 +21,7 @@ class Navbar extends Component {
     return (
       <nav>
         <Menu pointing>
-          <Header as='h1' floated='left' color='olive'>
+          <Header as='h1' color='orange'>
             Google Books
           </Header>
           <Menu.Item

@@ -29,10 +29,10 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    const thisBook = { _id: id };
+  deleteBook = book => {
+    let thisId = book._id;
     
-    API.deleteBook(thisBook)
+    API.deleteBook(thisId)
       .then(book => {
         console.log(`Book ${thisBook} was deleted.`);
         
@@ -63,7 +63,7 @@ class Saved extends Component {
                   >
                     <Button.Group attached='bottom'>
                       <Button href={book.link} circular={true} color='olive'>View</Button>
-                      <Button onClick={() => this.deleteBook(this._id)} color='red'>✗</Button>
+                      <Button onClick={() => this.deleteBook(book)} color='red'>✗</Button>
                     </Button.Group>
                   </ListItem>
                 ))}
