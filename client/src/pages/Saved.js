@@ -63,7 +63,7 @@ class Saved extends Component {
                   >
                     <Button.Group>
                       <Button href={book.link} circular={true} color='olive'>View</Button>
-                      <Button onClick={() => deleteBook(this._id)} color='red'>✗</Button>
+                      <Button onClick={() => this.deleteBook(this._id)} color='red'>✗</Button>
                     </Button.Group>
                   </ListItem>
                 ))}
