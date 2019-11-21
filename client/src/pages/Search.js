@@ -3,7 +3,7 @@ import Heading from '../components/Header';
 import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
 import { SearchInput } from '../components/Form';
-import { Header, List, Container, Button } from 'semantic-ui-react';
+import { List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
 import './Search.css';
 
@@ -105,9 +105,9 @@ class Search extends Component {
                 Search
               </Button>
           </Row>
-          <Row>
-            <h3>Results</h3>
-            {this.state.books.length ? (
+          {this.state.books.length ? (
+            <Row>
+              <h3>Results</h3>
               <List divided verticalAlign='middle'>
                 {this.state.books.map((book, i) => (
                   <ListItem
@@ -118,19 +118,18 @@ class Search extends Component {
                     image={book.volumeInfo.imageLinks.thumbnail}
                     link={book.volumeInfo.infoLink}
                   >
-                    <Button.Group attached='bottom'>
-                      <Button href={book.volumeInfo.infoLink} circular={true} color='olive'>View</Button>
+                    <Button.Group floated='right'>
+                      <Button href={book.volumeInfo.infoLink} color='olive'>View</Button>
+                      <Button.Or />
                       <Button onClick={() => this.save(book.volumeInfo.title, book.volumeInfo.authors, book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)} color='green'>Save</Button>
                     </Button.Group>
                   </ListItem>
                 ))}
               </List>
-            ) : (
-              <Header as='h3' textAlign='center'>
-                No Results to Display
-              </Header>
-            )}
-          </Row>
+            </Row>
+          ) : (
+            <div />
+          )}
         </Col>
       </Container>
     );

@@ -61,8 +61,9 @@ class Saved extends Component {
                     image={book.image}
                     link={book.link}
                   >
-                    <Button.Group attached='bottom'>
+                    <Button.Group floated='right'>
                       <Button href={book.link} circular={true} color='olive'>View</Button>
+                      <Button.Or />
                       <Button onClick={() => this.deleteBook(book)} color='red'>✗</Button>
                     </Button.Group>
                   </ListItem>

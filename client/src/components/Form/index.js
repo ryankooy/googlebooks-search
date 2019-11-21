@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Input } from 'semantic-ui-react';
-import './style.css';
 
 export function SearchInput(props) {
   return (

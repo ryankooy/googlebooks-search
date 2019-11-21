@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card, Grid } from 'semantic-ui-react';
-import './style.css';
 
 const styles = {
-  fontFamily: "'Baskervville', serif",
   backgroundColor: "ghostwhite",
   boxShadow: "0px 0px 20px darkgray"
 }
@@ -20,7 +18,7 @@ export function Row(props) {
 
 export function Col(props) {
   return (
-    <Grid.Column style={{ fontFamily: "'Baskervville', serif" }}>
+    <Grid.Column>
       {props.children}
     </Grid.Column>
   );
