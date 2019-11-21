@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Heading from '../components/Header';
-import API from '../utils/API';
 import { Col, Row } from '../components/Grid';
 import { SearchInput } from '../components/Form';
 import { List, Container, Button } from 'semantic-ui-react';
 import { ListItem } from '../components/List';
 import './Search.css';
+import API from '../../src/utils/API';
 
 class Search extends Component {
   state = {
