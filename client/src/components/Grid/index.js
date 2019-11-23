@@ -3,7 +3,7 @@ import { Card, Grid } from 'semantic-ui-react';
 
 const styles = {
   backgroundColor: "ghostwhite",
-  boxShadow: "0px 0px 20px darkgray"
+  boxShadow: "0px 0px 20px black"
 }
 
 export function Row(props) {

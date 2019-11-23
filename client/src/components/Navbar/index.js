@@ -5,7 +5,11 @@ import '../../App.js';
 
 const styles = {
   fontFamily: "'Baskervville', serif",
-  backgroundColor: "lightslategray"
+  backgroundColor: "seagreen",
+}
+
+const shadowStyle = {
+  dropShadow: "0px 0px 20px black"
 }
 
 const linkText = {
@@ -28,7 +32,7 @@ class Navbar extends Component {
     const { activeItem } = this.state;
 
     return (
-      <nav>
+      <nav style={shadowStyle}>
         <Menu style={styles} pointing>
           <Menu.Item
             as={ Link }

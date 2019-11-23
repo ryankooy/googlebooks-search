@@ -84,9 +84,7 @@ class Search extends Component {
     return (
       <Container className='cont' fluid>
         <Col>
-          <Row>
-            <Heading />
-          </Row>
+          <Heading />
           <Row>
             <h3>Search Books</h3>
               <SearchInput
@@ -98,7 +96,7 @@ class Search extends Component {
               />
               <Button
                 circular={true}
-                color='olive'
+                color='orange'
                 disabled={!this.state.search}
                 onClick={this.handleFormSubmit}
               >
@@ -119,9 +117,9 @@ class Search extends Component {
                     link={book.volumeInfo.infoLink}
                   >
                     <Button.Group floated='right'>
-                      <Button href={book.volumeInfo.infoLink} color='olive'>View</Button>
+                      <Button href={book.volumeInfo.infoLink} color='brown'>View</Button>
                       <Button.Or />
-                      <Button onClick={() => this.save(book.volumeInfo.title, book.volumeInfo.authors, book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)} color='green'>Save</Button>
+                      <Button onClick={() => this.save(book.volumeInfo.title, book.volumeInfo.authors, book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)} color='orange'>Save</Button>
                     </Button.Group>
                   </ListItem>
                 ))}

@@ -45,9 +45,7 @@ class Saved extends Component {
     return (
       <Container fluid>
         <Col>
-          <Row>
-            <Heading />
-          </Row>
+          <Heading />
           <Row>
             <h3>Saved Books</h3>
             {this.state.books.length ? (
@@ -62,7 +60,7 @@ class Saved extends Component {
                     link={book.link}
                   >
                     <Button.Group floated='right'>
-                      <Button href={book.link} circular={true} color='olive'>View</Button>
+                      <Button href={book.link} circular={true} color='brown'>View</Button>
                       <Button.Or />
                       <Button onClick={() => this.deleteBook(book)} color='red'>✗</Button>
                     </Button.Group>

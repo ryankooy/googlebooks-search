@@ -7,16 +7,13 @@ import Saved from './pages/Saved';
 import Matchless from './pages/Matchless';
 import Navbar from './components/Navbar';
 
-const styles = {
-  backgroundColor: 'lightgray'
-}
 
 function App() {
   return (
     <Router>
       <div>
         <Navbar />
-        <Grid centered celled='internally' style={styles}>
+        <Grid centered celled='internally'>
           <Grid.Column width={8}>
             <Switch>
               <Route exact path='/' component={Search} />
